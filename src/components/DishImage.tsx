@@ -1,13 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import { UtensilsCrossed } from 'lucide-react';
-import { MENU_IMAGE_MAP } from '../data/menuImageCatalog';
-import { MENU_DEMO_IMAGE } from '../data/menuDemoImages';
+import { getMenuItem } from '../data/menu';
+import { menuPhotoSrc } from '../data/menuPhotos';
 import { DEMO_IMAGES, DemoImageKey } from '../data/demoImages';
 
 interface DishImageProps {
-  /** id into MENU_IMAGE_MAP. If given, resolves: real local photo -> demo photo -> placeholder. */
+  /** menu item id (src/data/menu.ts). Resolves to that dish's photo, or a placeholder if it has none. */
   imageId?: string;
-  /** key into DEMO_IMAGES, for venue/event photos with no menu catalog entry. Ignored if imageId resolves. */
+  /** key into DEMO_IMAGES, for venue/event photos that aren't a menu dish. Ignored if imageId is given. */
   demoKey?: DemoImageKey;
   alt: string;
   className?: string;
@@ -18,11 +18,10 @@ interface DishImageProps {
 }
 
 /**
- * Resolves, in order: (1) a real local dish photo dropped in at its catalog path, (2) a
- * temporary free-to-use demo photo (see src/data/demoImages.ts -- Unsplash, credited there),
- * (3) a "photo coming soon" placeholder if neither exists. This means dropping a real client
- * photo in at its intended path (src/data/menuImageCatalog.ts) automatically replaces the demo
- * image later, with no component or JSX changes anywhere.
+ * Menu dishes use real, freely licensed photos stored locally (src/data/menuPhotos.ts,
+ * credited on /photo-credits). Venue/event shots use the demo photos in
+ * src/data/demoImages.ts. Anything without a photo -- or that fails to load -- shows a
+ * "Photo coming soon" placeholder rather than an unrelated image.
  */
 export const DishImage: React.FC<DishImageProps> = ({
   imageId,
@@ -32,16 +31,13 @@ export const DishImage: React.FC<DishImageProps> = ({
   sizes = '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw',
   priority = false,
 }) => {
-  const realEntry = imageId ? MENU_IMAGE_MAP[imageId] : undefined;
-  const resolvedDemoKey = demoKey || (imageId ? MENU_DEMO_IMAGE[imageId] : undefined);
-  const demoEntry = resolvedDemoKey ? DEMO_IMAGES[resolvedDemoKey] : undefined;
+  const [failed, setFailed] = useState(false);
 
-  const [stage, setStage] = useState<'real' | 'demo' | 'placeholder'>(realEntry ? 'real' : demoEntry ? 'demo' : 'placeholder');
+  const photo = imageId ? getMenuItem(imageId)?.photo : undefined;
+  const demo = !imageId && demoKey ? DEMO_IMAGES[demoKey] : undefined;
+  const src = photo ? menuPhotoSrc(photo) : demo?.url(priority ? 1600 : 800);
 
-  const width = priority ? 1600 : 800;
-  const demoSrc = useMemo(() => demoEntry?.url(width), [demoEntry, width]);
-
-  if (stage === 'placeholder' || (!realEntry && !demoEntry)) {
+  if (!src || failed) {
     return (
       <div
         className={`flex flex-col items-center justify-center gap-1.5 bg-stone-100 text-stone-400 ${className}`}
@@ -54,8 +50,6 @@ export const DishImage: React.FC<DishImageProps> = ({
     );
   }
 
-  const src = stage === 'real' ? realEntry!.image : demoSrc!;
-
   return (
     <img
       src={src}
@@ -65,7 +59,7 @@ export const DishImage: React.FC<DishImageProps> = ({
       loading={priority ? 'eager' : 'lazy'}
       decoding="async"
       fetchPriority={priority ? 'high' : 'auto'}
-      onError={() => setStage((s) => (s === 'real' && demoEntry ? 'demo' : 'placeholder'))}
+      onError={() => setFailed(true)}
     />
   );
 };

@@ -83,3 +83,32 @@ Section prices are per item unless an item has its own price.
 - **Adults £9.99** · **Kids (under 10) £4.99**
 - Menu includes: Sweet, Butter Chilli, Papadam, Roti Pachadi, White Rice, Sambar, Kootu, Rasam, Kara Kolambu, Chapathi, Yoghurt, Brinjal Masala Dal, Poriyal
 - "2 Min walk from Ilford station"
+
+---
+
+## Food menu (`food-menu.pdf`, received 2026-10-10)
+
+A 12-page printed menu.
+
+- **Pages 2–11: full food and drinks menu.** About 227 items in 26 sections, with prices, descriptions and dietary tags. It's transcribed in `src/data/menu.ts`, which is the source of truth for the website's Menu page.
+- **Dietary legend:** N Nuts · G Gluten · V (printed as "Gluton" but coloured green, so we read it as Vegan; please confirm) · J Jain · D Dairy.
+- **Allergy notice:** "Some of our dishes may contain nut, gluten, mustard, soya and other dairy products."
+- **Page 1: weekend breakfast buffet.** Same as `morning-buffet-flyer.png`, except the heading says "Weekends & Bank Holiday" but the time strip says "Only Sat & Sun".
+- **Page 12: Outdoor Catering.** It differs from `catering-and-add-ons-menu.png`, and the Catering page doesn't use it yet:
+  - **Madras Thali, £12pp:** White Rice, Chapathi, Sambar, Rasam, Karakolambhu, Kuttu, Poriyal, Sweet, Yogurt, Butter Chilli, Papadam, Pickle.
+  - **North Indian Thali, £12pp:** Variety Rice, Paneer 65 or Gobi 65, 2 pcs Chapathi, Channa Masala, Paneer Butter Masala, Dhaal, Raitha, Salad, Sweet.
+  - **Standard Menu (live dosa), £10pp:**
+    - **Dishes:** Idly (2 pc per person), Medhu Vada, Onion Chilli Uthappam, Mix Veg Uthappam, Plain / Masala / Onion / Podi / Ghee / Ghee Podi / Cheese / Cheese Masala / Mysore Masala / Chocolate Dosa.
+    - **Served with:** Sambar, Onion Tomato Chutney and Coconut Chutney.
+  - **Pricing and terms:**
+    - All three menus are priced for up to 100 people. Above 100 people it's £10pp.
+    - Cutlery is included (plates, spoons and tissues). Palm plates are extra.
+    - Transport is free up to 10 miles, then £2 per extra mile.
+    - Orders can't be cancelled once placed.
+  - **Free parking:** above £30, for up to 2 hrs. Nearby car parks: Citipark Clements Rd (0.2m), Exchange Ilford Havelock St (0.5m), Ilford Lane 1 Howard Rd (0.3m), SS Peter & Paul 342 High Rd (0.8m).
+- **Contact details on this menu:**
+  - Website: www.yummydosarestaurant.co.uk
+  - Email: yummydosailford@gmail.com. This is a third email address, different from both the site and the earlier flyers.
+  - Catering enquiries: 07776 675146
+
+Also in `Downloads/Design/yummy dosa latest resources/`: `Yummy dosa August Month menu card.pdf`. It hasn't been reviewed yet.

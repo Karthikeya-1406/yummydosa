@@ -17,6 +17,7 @@ import CateringPage from './pages/CateringPage';
 import FranchisePage from './pages/FranchisePage';
 import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
+import PhotoCreditsPage from './pages/PhotoCreditsPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="franchise" element={<FranchisePage />} />
             <Route path="careers" element={<CareersPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="photo-credits" element={<PhotoCreditsPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

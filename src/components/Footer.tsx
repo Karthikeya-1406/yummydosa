@@ -85,6 +85,10 @@ export const Footer: React.FC = () => {
         {/* Copyright Notice */}
         <Reveal delay={0.1} className="pt-8 text-center text-xs text-stone-500 font-medium">
           © {new Date().getFullYear()} Yummy Dosa. All rights reserved.
+          <span className="mx-2 text-stone-600">·</span>
+          <Link to="/photo-credits" className="hover:text-amber-400 transition-colors">
+            Photo credits
+          </Link>
         </Reveal>
       </div>
     </footer>
