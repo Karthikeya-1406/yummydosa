@@ -9,10 +9,9 @@ import { DemoImage } from '../types';
  * `url(width)` builds a correctly-sized request against Unsplash's own
  * image-resizing CDN, so we never ship a full-resolution original.
  *
- * This file is the ONLY place demo photography is defined. Swapping in
- * Yummy Dosa's real photography later means editing MENU_DEMO_IMAGE / the
- * venue image constants below (or ultimately deleting this file once real
- * photos exist at the paths in menuImageCatalog.ts) -- no JSX changes.
+ * This file is the ONLY place demo photography is defined. It now covers
+ * venue/event shots (banquet, catering, dining) and promo headers; menu
+ * dishes use their own photos in src/data/menuPhotos.ts.
  *
  * See MISSING_IMAGES.md for the real-photography gap this covers, and
  * IMAGE_AUDIT.md for the coverage report.

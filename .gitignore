@@ -7,3 +7,7 @@ coverage/
 .env*
 !.env.example
 temp/
+
+# Client-supplied flyers (large reference images; text is transcribed in client-resources/README.md)
+client-resources/*.png
+client-resources/*.pdf

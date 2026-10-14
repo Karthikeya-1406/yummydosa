@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
-import { X, Leaf, MessageCircle } from 'lucide-react';
+import { X, Leaf, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MenuCatalogItem } from '../types';
 import { DishImage } from './DishImage';
+import { DietTags } from './DietTags';
+import { DIET_TAGS } from '../data/menu';
 import { SPRING_SHEET, SPRING_SNAPPY, EASE_OUT } from './motion/variants';
 
 interface MenuItemDetailProps {
@@ -70,24 +72,33 @@ export const MenuItemDetail: React.FC<MenuItemDetailProps> = ({ item, onClose, o
                 <p className="text-stone-600 text-sm leading-relaxed">{item.description}</p>
               )}
 
-              <div className="flex items-center gap-3">
+              <div className="flex flex-wrap items-center gap-3">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
                   <Leaf className="w-3.5 h-3.5" />
                   Pure Vegetarian
                 </span>
-                {item.price && (
-                  <span className="text-xl font-bold text-[#1b4332]">{item.price}</span>
-                )}
+                <span className="text-xl font-bold text-[#1b4332]">{item.price}</span>
               </div>
+
+              {item.tags.length > 0 && (
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-stone-600">
+                  {item.tags.map((tag) => (
+                    <span key={tag} className="inline-flex items-center gap-1.5">
+                      <DietTags tags={[tag]} />
+                      {DIET_TAGS[tag].label}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <motion.button
                 whileTap={{ scale: 0.97 }}
                 transition={SPRING_SNAPPY}
                 onClick={() => onOrder(item)}
-                className="w-full py-3.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                className="w-full py-3.5 rounded-full bg-[#EA262A] hover:bg-[#C81E22] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 fill-current" />
-                <span>Order on WhatsApp</span>
+                <ShoppingBag className="w-4 h-4" />
+                <span>Order Online</span>
               </motion.button>
             </div>
           </motion.div>

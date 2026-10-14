@@ -1,32 +1,15 @@
 # /public/images/menu/
 
-Real dish photography for the menu, organized by category to match
-`src/data/menuImageCatalog.ts`:
+`photos/<key>.jpg` holds one photo per dish, keyed by the `photo` field on each
+item in `src/data/menu.ts`. Several variants of the same dish share a photo.
+For example, Butter Masala Dosa uses `butter-dosa.jpg`.
 
-```
-dosa/          Classic dosa menu
-rava-dosa/     Rava dosa menu
-special-dosa/  Special Dosas + Yummy Dosa Special Dosas
-south-indian/  All-Time Favorites (idli, vada, pongal, upma, etc.)
-starters/      Starters, soups, desi snacks
-chaat/         Desi chaat
-kids/          Kids menu
-thali/         Thalis + extras/sides
-drinks/        Soft drinks, lassi/milkshakes, juices, hot drinks, shakes
-desserts/      Ice cream/kulfi, falooda, waffles, packaged sweets
-```
+These are real, freely licensed photos from Wikimedia Commons, resized to 800px wide.
+Each one's author, licence and source page is listed in `src/data/menuPhotos.ts`.
+The site shows those credits on `/photo-credits`, as the CC BY and CC BY-SA licences require.
 
-## Adding a photo
+## Replacing a photo with the restaurant's own
 
-1. Find the dish's intended filename in `src/data/menuImageCatalog.ts`
-   (the `image` field, e.g. `/images/menu/dosa/masala-dosa.webp`).
-2. Export/crop the photo to that exact path, WebP format, ~1200px on the
-   long edge, cropped tight on the food (see the craveability notes in
-   `MISSING_IMAGES.md` at the project root).
-3. That's it — no code changes. `DishImage` (`src/components/DishImage.tsx`)
-   requests the path directly; once the file exists it renders, and until
-   then it shows a "Photo coming soon" placeholder instead of a broken
-   image or a substituted, unrelated dish.
-
-Never rename a dish's id in the catalog without also renaming its file,
-and never point two unrelated dishes at the same file.
+1. Save the new photo over `photos/<key>.jpg` as a JPEG about 800px wide.
+2. In `src/data/menuPhotos.ts`, change that key's entry to `author: 'Yummy Dosa'` and
+   `license: 'Own photo'`. The credits page doesn't list the restaurant's own photos.

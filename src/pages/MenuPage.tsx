@@ -1,15 +1,22 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Search, X, Leaf, ArrowRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, X, Leaf, ArrowRight, AlertTriangle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { PageHero } from '../components/layout/PageHero';
 import { Breadcrumbs } from '../components/layout/Breadcrumbs';
 import { DishImage } from '../components/DishImage';
 import { MenuItemDetail } from '../components/MenuItemDetail';
 import { SPRING_SNAPPY } from '../components/motion/variants';
-import { useOrderModal } from '../context/OrderModalContext';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { MENU_GROUPS, MENU_ITEMS, searchMenuItems } from '../data/menu';
+import { DietTags, DietLegend } from '../components/DietTags';
+import {
+  ALLERGY_NOTICE,
+  MENU_CATEGORY_NOTES,
+  MENU_GROUPS,
+  MENU_ITEMS,
+  categoriesForGroup,
+  searchMenuItems,
+} from '../data/menu';
 import { MenuCatalogItem } from '../types';
 
 const MenuCard: React.FC<{ item: MenuCatalogItem; onSelect: (item: MenuCatalogItem) => void }> = ({ item, onSelect }) => {
@@ -39,15 +46,18 @@ const MenuCard: React.FC<{ item: MenuCatalogItem; onSelect: (item: MenuCatalogIt
           </h3>
           <Leaf className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" aria-label="Vegetarian" />
         </div>
-        <p className="text-stone-400 text-xs mt-1">{item.category}</p>
-        {item.price && <p className="text-[#D9531E] font-bold text-sm mt-2">{item.price}</p>}
+        {item.description && <p className="text-stone-500 text-xs mt-1 line-clamp-2">{item.description}</p>}
+        <div className="flex items-center justify-between gap-2 mt-3">
+          <p className="text-[#D9531E] font-bold text-sm">{item.price}</p>
+          <DietTags tags={item.tags} />
+        </div>
       </div>
     </motion.button>
   );
 };
 
 export default function MenuPage() {
-  const { openOrderModal } = useOrderModal();
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [activeGroup, setActiveGroup] = useState(MENU_GROUPS[0].id);
   const [detailItem, setDetailItem] = useState<MenuCatalogItem | null>(null);
@@ -80,9 +90,9 @@ export default function MenuPage() {
     sectionRefs.current[id]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const handleOrder = (item: MenuCatalogItem) => {
+  const handleOrder = () => {
     setDetailItem(null);
-    openOrderModal(item);
+    navigate('/order-online');
   };
 
   return (
@@ -90,7 +100,7 @@ export default function MenuPage() {
       <PageHero
         eyebrow="THE MENU"
         title="The Menu"
-        description="100+ dishes rooted in Tamil Nadu, Karnataka, Kerala, Andhra Pradesh and Telangana -- dosas, tiffin, thalis, chaat, drinks and desserts, all pure vegetarian."
+        description={`${MENU_ITEMS.length} dishes rooted in Tamil Nadu, Karnataka, Kerala, Andhra Pradesh and Telangana -- dosas, tiffin, thalis, chaat, curries, drinks and desserts, all pure vegetarian.`}
         primaryAction={{ label: 'Order Online', to: '/order-online' }}
         imageId="masala-dosa"
         height="compact"
@@ -153,6 +163,17 @@ export default function MenuPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="mb-10 bg-white rounded-2xl border border-stone-100 shadow-sm p-4 sm:p-5 space-y-3">
+          <DietLegend />
+          <p className="flex items-start gap-2 text-xs text-stone-600">
+            <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0" />
+            <span>
+              <span className="font-bold text-stone-800">Allergy notice:</span> {ALLERGY_NOTICE} Please ask a member
+              of our team if you have any allergies.
+            </span>
+          </p>
+        </div>
+
         {results ? (
           <div>
             <p className="text-stone-500 text-sm mb-6">
@@ -195,14 +216,19 @@ export default function MenuPage() {
                   </h2>
                 </div>
                 <div className="space-y-10">
-                  {group.categories.map((category) => {
+                  {categoriesForGroup(group.id).map((category, _, categories) => {
                     const items = MENU_ITEMS.filter((item) => item.category === category);
                     if (items.length === 0) return null;
                     return (
                       <div key={category}>
-                        {group.categories.length > 1 && (
+                        {(categories.length > 1 || MENU_CATEGORY_NOTES[category]) && (
                           <h3 className="text-sm font-bold uppercase tracking-widest text-[#D9531E] mb-4">
-                            {category}
+                            {categories.length > 1 && category}
+                            {MENU_CATEGORY_NOTES[category] && (
+                              <span className="ml-2 normal-case tracking-normal font-semibold text-stone-500">
+                                ({MENU_CATEGORY_NOTES[category]})
+                              </span>
+                            )}
                           </h3>
                         )}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

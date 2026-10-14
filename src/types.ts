@@ -1,40 +1,38 @@
 import type { DemoImageKey } from './data/demoImages';
 
+/** Broad menu sections, shown as the category pills on /menu. */
 export type MenuGroup =
+  | 'tiffin'
   | 'dosa'
-  | 'rava-dosa'
   | 'special-dosa'
-  | 'south-indian'
+  | 'rava-dosa'
+  | 'uthappam'
   | 'starters'
   | 'chaat'
   | 'thali'
-  | 'drinks'
+  | 'curries'
+  | 'rice-noodles'
+  | 'kids'
   | 'desserts'
-  | 'kids';
+  | 'drinks'
+  | 'extras';
 
-/** One real, named dish/drink from the reconciled Yummy Dosa menu (info.md) and its intended local photo. */
-export interface MenuImageCatalogEntry {
-  id: string;
-  name: string;
-  /** top-level folder under /images/menu/ */
-  folder: MenuGroup;
-  subcategory: string;
-  /** intended local asset path. May not exist on disk yet -- DishImage falls back to a placeholder until it does. */
-  image: string;
-}
+/** Dietary/allergen markers from the printed menu's legend. */
+export type DietTag = 'N' | 'G' | 'V' | 'J' | 'D';
 
-/** The centralized, full real menu item (src/data/menu.ts). No invented price/description. */
+/** One dish/drink from the client's printed food menu (src/data/menu.ts). */
 export interface MenuCatalogItem {
   id: string;
   name: string;
-  /** real info.md category label, e.g. "Dosa Menu", "Desi Chaat" */
+  /** printed menu section heading, e.g. "Your Favourite Dosas", "Desi Chaat" */
   category: string;
-  /** broad hierarchy group folder, e.g. "dosa", "thali" */
   group: MenuGroup;
-  image: string;
-  isVeg: true;
+  price: string;
   description?: string;
-  price?: string;
+  tags: DietTag[];
+  /** key into MENU_PHOTOS; absent when no relevant free photo exists (placeholder shown) */
+  photo?: import('./data/menuPhotos').MenuPhotoKey;
+  isVeg: true;
 }
 
 /**
