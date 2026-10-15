@@ -12,7 +12,7 @@ export const AnnouncementBar: React.FC = () => {
       initial={{ height: 0, opacity: 0 }}
       animate={{ height: 'auto', opacity: 1 }}
       transition={{ duration: 0.5, ease: EASE_OUT }}
-      className="bg-[#1b4332] text-white text-xs sm:text-sm font-medium border-b border-white/10 select-none overflow-hidden"
+      className="bg-[#286432] text-white text-xs sm:text-sm font-medium border-b border-white/10 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3">
         {/* WhatsApp / Phone Contact */}
