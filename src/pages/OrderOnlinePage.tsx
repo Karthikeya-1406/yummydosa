@@ -18,11 +18,12 @@ const LOGO_IMAGE: Record<string, string> = {
   direct: encodeURI('/logos/logo.png'),
 };
 
-const PlatformLink: React.FC<{ platform: (typeof ORDERING_LOGO_LINKS)[number]; className: string; imgClassName: string }> = ({
-  platform,
-  className,
-  imgClassName,
-}) => {
+const PlatformLink: React.FC<{
+  platform: (typeof ORDERING_LOGO_LINKS)[number];
+  className: string;
+  imgClassName: string;
+  children?: React.ReactNode;
+}> = ({ platform, className, imgClassName, children }) => {
   return (
     <motion.a
       whileTap={{ scale: 0.95 }}
@@ -38,6 +39,7 @@ const PlatformLink: React.FC<{ platform: (typeof ORDERING_LOGO_LINKS)[number]; c
       className={className}
     >
       <img src={LOGO_IMAGE[platform.id]} alt={platform.name} className={imgClassName} />
+      {children}
     </motion.a>
   );
 };
@@ -81,9 +83,25 @@ export default function OrderOnlinePage() {
           <Reveal direction="scale" delay={0.15} className="relative mt-6">
             <PlatformLink
               platform={direct}
-              className="group flex items-center justify-center bg-white rounded-3xl border border-stone-100 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer p-10 sm:p-14"
-              imgClassName="w-full max-w-xl sm:max-w-2xl h-auto object-contain group-hover:scale-105 transition-transform duration-300"
-            />
+              className="group block overflow-hidden bg-[#F4B12C] rounded-3xl border border-[#F4B12C] shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
+              imgClassName="block w-full h-auto"
+            >
+              {/* Tagline -- echoes the 10% off badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ ...SPRING_SNAPPY, delay: 0.55 }}
+                className="flex justify-center px-4 pt-2 pb-3 sm:pt-2 sm:pb-4"
+              >
+                <p className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-white shadow-lg shadow-amber-700/20 text-stone-900 text-sm sm:text-base font-semibold text-center group-hover:scale-105 transition-transform duration-300">
+                  <BadgePercent className="w-5 h-5 shrink-0" />
+                  <span>
+                    Order through our website and get <span className="font-extrabold">10% off</span>.
+                  </span>
+                </p>
+              </motion.div>
+            </PlatformLink>
             <motion.div
               initial={{ opacity: 0, scale: 0.5, rotate: -20 }}
               whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -98,22 +116,6 @@ export default function OrderOnlinePage() {
               </div>
             </motion.div>
           </Reveal>
-
-          {/* Tagline -- echoes the 10% off badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ ...SPRING_SNAPPY, delay: 0.55 }}
-            className="flex justify-center mt-6"
-          >
-            <p className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-gradient-to-br from-[#F3C75A] to-[#E8B93B] ring-4 ring-white shadow-lg shadow-amber-500/30 text-stone-900 text-sm sm:text-base font-semibold text-center">
-              <BadgePercent className="w-5 h-5 shrink-0" />
-              <span>
-                Order through our website and get <span className="font-extrabold">10% off</span>.
-              </span>
-            </p>
-          </motion.div>
 
           <p className="text-center text-stone-400 text-xs mt-10">
             <Link to="/menu" className="underline hover:text-[#D9531E]">

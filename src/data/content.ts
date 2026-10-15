@@ -65,14 +65,14 @@ export const SOCIAL_LINKS: { id: 'facebook' | 'instagram'; name: string; href: s
 /**
  * Order-online logo links (Just Eat / Uber Eats / Deliveroo / order direct).
  * Real destination URLs for the three delivery platforms (given directly by
- * the client, cleaned of tracking params e.g. Uber Eats' `srsltid`). "direct"
- * stays a placeholder "#" until the client supplies where it should go.
+ * the client, cleaned of tracking params e.g. Uber Eats' `srsltid`), plus the
+ * restaurant's own direct-ordering page.
  */
 export const ORDERING_LOGO_LINKS: { id: string; name: string; href: string }[] = [
   { id: 'justeat', name: 'Just Eat', href: 'https://www.just-eat.co.uk/restaurants-yummy-dosa-restaurant-ilford/menu' },
   { id: 'ubereats', name: 'Uber Eats', href: 'https://www.ubereats.com/gb/store/yummy-dosa-restaurant/akehr_6hWDi2Ove_iQj-Kw' },
   { id: 'deliveroo', name: 'Deliveroo', href: 'https://deliveroo.co.uk/menu/london/cranbrook/yummy-dosa-restaurant-68-cranbrook-road' },
-  { id: 'direct', name: 'Order Direct', href: '#' },
+  { id: 'direct', name: 'Order Direct', href: 'https://yummydosarestaurant.co.uk/yummydosa.html' },
 ];
 
 /** info.md section 6-7: the actual "about" narrative content. */
