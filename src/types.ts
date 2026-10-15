@@ -24,7 +24,7 @@ export type DietTag = 'N' | 'G' | 'V' | 'J' | 'D';
 export interface MenuCatalogItem {
   id: string;
   name: string;
-  /** printed menu section heading, e.g. "Your Favourite Dosas", "Desi Chaat" */
+  /** printed menu section heading, e.g. "Your Favorite Dosa's", "Desi Chat" */
   category: string;
   group: MenuGroup;
   price: string;

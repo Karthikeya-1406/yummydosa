@@ -4,8 +4,8 @@ import { MenuPhotoKey } from './menuPhotos';
 /**
  * The Yummy Dosa food menu, transcribed from the client's printed menu
  * (client-resources: "Yummy dosa menu.pdf", pages 2-11). Prices, descriptions and
- * dietary tags are as printed; only obvious typos were corrected. Every item is
- * pure vegetarian.
+ * dietary tags are as printed; section headings are verbatim, item names have only
+ * obvious typos corrected. Every item is pure vegetarian.
  *
  * Each item has a `photo` (src/data/menuPhotos.ts): Yummy Dosa's own photo (`own/...`)
  * where supplied, otherwise a freely licensed photo, shared between variants of a dish.
@@ -56,7 +56,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Desi Chaat',
+    category: 'Desi Chat',
     group: 'chaat',
     items: [
       ['Pani Puri', '£5.49', ['J', 'G', 'V'], 'pani-puri', 'Crispy puris filled with spicy, tangy water, tamarind chutney and a mix of potatoes and chickpeas.'],
@@ -103,9 +103,9 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Yummy Dosa Special Starters',
+    category: 'Yummy Dosa Special Starter',
     group: 'starters',
-    note: 'Available 10:00 AM – 10:45 PM',
+    note: 'Available at 10:00 AM - 10:45 PM',
     items: [
       ['Veg Manchurian', '£7.99', ['V', 'G'], 'own/veg-manchurian', 'Veg dumplings tossed in Yummy Dosa’s special in-house sauce.'],
       ['Gobi Manchurian', '£7.99', ['V', 'G', 'J'], 'own/gobi-manchurian', 'Fried cauliflower florets sautéed in Yummy Dosa’s Manchurian sauce.'],
@@ -137,16 +137,15 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Combo Deals',
+    category: 'Combo Deal (Breakfast & Lunch)',
     group: 'tiffin',
-    note: 'Breakfast & Lunch',
     items: [
       ['Mini Tiffin', '£8.49', [], 'mini-tiffin', '2 pcs Idly, 1 pc Vada, Ghee Pongal or Upma, Mini Masala Dosa or Poori, and Sweet.'],
       ['Mini Lunch Combo', '£8.49', [], 'mini-meals', 'Sambar Rice, Curd Rice, Veg Biryani, Chapathi, Poriyal, Sweet, Papadam and Pickle.'],
     ],
   },
   {
-    category: 'Your Favourite Dosas',
+    category: "Your Favorite Dosa's",
     group: 'dosa',
     items: [
       ['Plain Dosa', '£5.29', ['V', 'J'], 'own/plain-dosa', 'A simple, soft dosa made from fermented rice and urad dal batter – light with a crispy texture.'],
@@ -168,7 +167,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Special Dosas',
+    category: "Special Dosa's",
     group: 'special-dosa',
     items: [
       ['Mysore Masala Dosa', '£7.29', ['V'], 'own/mysore-masala-dosa', 'Spread with spicy house chutney and filled with seasoned potato masala.'],
@@ -184,7 +183,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Indo-Chinese Dosas',
+    category: "Indo-Chinese Dosa's",
     group: 'special-dosa',
     items: [
       ['Chilli Garlic Podi Dosa', '£8.49', ['V'], 'own/chilli-garlic-podi-dosa', 'Spicy lentil and garlic powder and chilli topped on a thin crepe.'],
@@ -199,7 +198,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Love Your Rava Dosas',
+    category: "Love your Rava Dosa's",
     group: 'rava-dosa',
     items: [
       ['Rava Dosa', '£6.49', ['J', 'V', 'G'], 'own/rava-dosa', 'A popular dosa with a difference – made with semolina.'],
@@ -216,7 +215,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Desi Pizzas (Uthappams)',
+    category: "Desi Pizza's (Uthappam's)",
     group: 'uthappam',
     items: [
       ['Plain Uthappam', '£4.99', ['J', 'V'], 'own/plain-uthappam', 'South Indian soft pancake made of rice.'],
@@ -231,7 +230,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Annapoorneshwari Meals',
+    category: "Annapoorneshwari Meal's",
     group: 'thali',
     items: [
       ['Madras Thali', '£9.99', [], 'madras-thali', 'White Rice, 1 pc Chapathi or Poori, Sambar, Rasam, Kara Kolambu, Yoghurt, Kootu, Poriyal, Butter Chilli Pickle, Sweet and Papadam.'],
@@ -256,7 +255,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Mouth-Watering Curries',
+    category: "Mouth-Watering Curry's",
     group: 'curries',
     items: [
       ['Paneer Tikka Masala', '£7.99', ['D'], 'paneer-tikka-masala', 'Grilled paneer cubes cooked in a rich, creamy tomato-based gravy with aromatic spices.'],
@@ -298,7 +297,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Desi-Chinese Rice & Noodles',
+    category: 'Desi-Chinese / Rice & Noodles',
     group: 'rice-noodles',
     items: [
       ['Veg Fried Rice', '£7.49', ['V', 'J'], 'veg-fried-rice', 'Long grain basmati rice cooked with mixed vegetables and whole spices tempered in ghee.'],
@@ -314,7 +313,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Desi Meetha (Desserts)',
+    category: 'Desi Meeta (Deserts)',
     group: 'desserts',
     items: [
       ['Rava Kesari (Plain / Pineapple / Banana)', '£3.99', ['D', 'G', 'J'], 'kesari', 'A delightful semolina dessert infused with ghee, sugar and fragrant saffron, garnished with nuts.'],
@@ -372,7 +371,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Lassi & Milkshakes',
+    category: 'Lassi and Milkshakes',
     group: 'drinks',
     tags: ['D'],
     items: [
@@ -391,7 +390,7 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    category: 'Fresh Fruit Juices',
+    category: 'Fresh fruit Juices',
     group: 'drinks',
     items: [
       ['Orange / Apple / Watermelon / Carrot / Pineapple', '£5.49', [], 'orange-juice'],
@@ -447,13 +446,13 @@ export const MENU_CATEGORY_NOTES: Record<string, string> = Object.fromEntries(
 /** Menu sections for the /menu page, in display order. `image` is a representative dish id for homepage tiles. */
 export const MENU_GROUPS: { id: MenuGroup; label: string; image: string }[] = [
   { id: 'tiffin', label: 'South Indian Tiffin', image: 'idly-3-nos-or-idly-2-nos-and-vada-1-no' },
-  { id: 'dosa', label: 'Dosas', image: 'masala-dosa' },
+  { id: 'dosa', label: "Your Favorite Dosa's", image: 'masala-dosa' },
   { id: 'special-dosa', label: 'Special Dosas', image: 'mysore-masala-dosa' },
-  { id: 'rava-dosa', label: 'Rava Dosas', image: 'onion-rava-masala-dosa' },
-  { id: 'uthappam', label: 'Uthappams', image: 'onion-uthappam' },
+  { id: 'rava-dosa', label: "Love your Rava Dosa's", image: 'onion-rava-masala-dosa' },
+  { id: 'uthappam', label: "Desi Pizza's (Uthappam's)", image: 'onion-uthappam' },
   { id: 'starters', label: 'Soups & Starters', image: 'gobi-manchurian' },
-  { id: 'chaat', label: 'Desi Chaat', image: 'pani-puri' },
-  { id: 'thali', label: 'Thalis', image: 'madras-thali' },
+  { id: 'chaat', label: 'Desi Chat', image: 'pani-puri' },
+  { id: 'thali', label: "Annapoorneshwari Meal's", image: 'madras-thali' },
   { id: 'curries', label: 'Curries & Breads', image: 'paneer-butter-masala' },
   { id: 'rice-noodles', label: 'Rice & Noodles', image: 'veg-biryani' },
   { id: 'kids', label: 'Kids Menu', image: 'kids-chocolate-dosa' },
