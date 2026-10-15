@@ -10,7 +10,7 @@ import { LocationsSection } from '../components/LocationsSection';
 import { PromoBanner } from '../components/PromoBanner';
 import { useOrderModal } from '../context/OrderModalContext';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { BUSINESS } from '../data/content';
+import { BUSINESS, SERVICES_CONTENT } from '../data/content';
 
 export default function HomePage() {
   const { openOrderModal } = useOrderModal();
@@ -36,7 +36,8 @@ export default function HomePage() {
       <PromoBanner
         eyebrow="BANQUET HALL"
         title="Your Celebration, Our Table"
-        description="Yummy Dosa has a dedicated banquet hall for private events -- from birthdays and weddings to corporate gatherings and family functions."
+        highlight={SERVICES_CONTENT.banquet.tagline}
+        description="Yummy Dosa has a dedicated banquet hall for private events -- from birthdays and weddings to corporate gatherings and family functions. Book your event or party food with us and the hall comes free of charge."
         points={['Birthday parties', 'Weddings', 'Corporate events', 'Family gatherings']}
         ctaLabel="Plan Your Event"
         ctaTo="/banquet-hall"

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PartyPopper, Phone, MessageCircle, Utensils, Images } from 'lucide-react';
+import { PartyPopper, Phone, MessageCircle, Utensils, Images, Gift } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { PageHero } from '../components/layout/PageHero';
 import { Breadcrumbs } from '../components/layout/Breadcrumbs';
@@ -9,7 +9,7 @@ import { Reveal } from '../components/motion/Reveal';
 import { StaggerGroup, StaggerItem } from '../components/motion/Stagger';
 import { SPRING_SNAPPY } from '../components/motion/variants';
 import { useDocumentMeta } from '../hooks/useDocumentMeta';
-import { BANQUET_CONTENT, BUSINESS, WHATSAPP_TEST_NUMBER } from '../data/content';
+import { BANQUET_CONTENT, BUSINESS, SERVICES_CONTENT, WHATSAPP_TEST_NUMBER } from '../data/content';
 
 const banquetWhatsappDigits = BUSINESS.banquetContact.phone.replace(/\D/g, '');
 
@@ -97,6 +97,18 @@ export default function BanquetHallPage() {
               Alongside the main restaurant at 68 Cranbrook Rd, Ilford, Yummy Dosa operates a dedicated banquet
               hall for private functions -- from an intimate family gathering to a full celebration.
             </p>
+            {/* Free-hall offer (client's banquet flyer) */}
+            <div className="flex items-start gap-4 bg-[#1b4332] text-white rounded-2xl p-5 shadow-sm">
+              <span className="flex items-center justify-center w-11 h-11 rounded-full bg-amber-300 text-[#1b4332] shrink-0">
+                <Gift className="w-5 h-5" />
+              </span>
+              <div>
+                <p className="font-extrabold text-base sm:text-lg leading-snug">{SERVICES_CONTENT.banquet.tagline}</p>
+                <p className="text-stone-300 text-sm mt-1 leading-relaxed">
+                  Book your event or party food with us and the banquet hall comes free of charge -- no hall hire fee.
+                </p>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

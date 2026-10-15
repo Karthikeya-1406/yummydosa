@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, LucideIcon } from 'lucide-react';
+import { ArrowRight, Gift, LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 import { DishImage } from './DishImage';
 import { Reveal } from './motion/Reveal';
@@ -12,6 +12,8 @@ interface PromoBannerProps {
   title: string;
   description: string;
   points?: string[];
+  /** short offer callout shown under the title, e.g. a free-hall offer */
+  highlight?: string;
   ctaLabel: string;
   ctaTo: string;
   imageId?: string;
@@ -26,6 +28,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   title,
   description,
   points,
+  highlight,
   ctaLabel,
   ctaTo,
   imageId,
@@ -55,6 +58,12 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
               <span>{eyebrow}</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">{title}</h2>
+            {highlight && (
+              <p className="flex items-center gap-2.5 w-fit px-4 py-2.5 rounded-2xl bg-[#1b4332] text-white text-sm sm:text-base font-bold shadow-sm">
+                <Gift className="w-5 h-5 shrink-0 text-amber-300" />
+                <span>{highlight}</span>
+              </p>
+            )}
             <p className={`text-sm sm:text-base leading-relaxed ${tone === 'dark' ? 'text-stone-300' : 'text-stone-600'}`}>
               {description}
             </p>

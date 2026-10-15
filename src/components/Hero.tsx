@@ -126,7 +126,20 @@ export const Hero: React.FC<HeroProps> = ({ onViewSpecials }) => {
           {/* Subtitle */}
           <StaggerItem direction="up">
             <p className="text-base sm:text-lg text-stone-200 font-normal mb-8 leading-relaxed max-w-md">
-              Real South Indian taste. Freshly prepared. We are two minutes away from Ilford Station.
+              Real South Indian taste. Freshly prepared.{' '}
+              {/* Highlighter-pen swipe across the station line */}
+              <motion.span
+                initial={
+                  prefersReducedMotion
+                    ? { backgroundSize: '100% 100%', color: '#1c1917' }
+                    : { backgroundSize: '0% 100%', color: '#ffffff' }
+                }
+                animate={{ backgroundSize: '100% 100%', color: '#1c1917' }}
+                transition={{ duration: 0.9, delay: 1.1, ease: EASE_OUT }}
+                className="box-decoration-clone bg-no-repeat bg-[linear-gradient(#FFD43B,#FFD43B)] px-1.5 -mx-0.5 rounded-sm font-semibold text-stone-900"
+              >
+                We are two minutes away from Ilford Station.
+              </motion.span>
             </p>
           </StaggerItem>
 
